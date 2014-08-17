@@ -1,0 +1,111 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+@import 'compass';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.alert {
+  font-weight: bold;
+}
+
+dl {
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin-left: 2em;
+    margin-bottom: 1em;
+  }
+}
+
+@mixin header-base-inverse {
+  color: $body-bg;
+  background-color: $text-color;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+}
+
+h1.inverse {
+  @include header-base-inverse;
+}
+
+h2.inverse {
+  font-size: 27px;
+  @include header-base-inverse;
+}
+
+h3.inverse {
+  @include header-base-inverse;
+}
+
+h4.inverse {
+  @include header-base-inverse;
+}
+
+h5.inverse {
+  @include header-base-inverse;
+}
+
+h6.inverse {
+  @include header-base-inverse;
+}
+
+.red-text {
+  color: $brand-danger;
+  font-weight: bold;
+}
+
+.required {
+  @extend .red-text;
+}
+
+.centered {
+  text-align: center;
+}
+
+ul.unstyled {
+  list-style-type: none;
+}
+
+.error_explanation, #error_explanation {
+  border: 2px solid $brand-danger;
+  padding: 7px;
+  background-color: $btn-danger-color;
+  border-radius: 4px;
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    margin: -7px;
+    background-color: $brand-danger;
+    color: $btn-danger-color;
+  }
+  p {
+    color: $brand-danger;
+    margin: 1.25em;
+    margin-bottom: 0;
+  }
+  ul {
+    padding-bottom: 0;
+    margin-left: 1em;
+    padding-top: 1.5em;
+    li {
+      list-style: square;
+      color: $brand-danger;
+    }
+  }
+}
