@@ -3,6 +3,7 @@
     <tr>
       <th>Tags</th>
       <th>ID</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,9 @@
         </ul>
       </td>
       <td><%= image.id %></td>
+      <td class="actions">
+        <%= link_to '<span class="glyphicon glyphicon-trash"><span> Delete'.html_safe, image_path(image.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger delete' %>
+      </td>
     </tr>
   <% end %>
   </tbody>
