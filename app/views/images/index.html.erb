@@ -1,0 +1,22 @@
+<table id="images" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tags</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @images.each do |image| %>
+    <tr data-id="<%= image.id %>">
+      <td>
+        <ul>
+          <% image.info['RepoTags'].each do |tag| %>
+            <li><%= tag %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= image.id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -11,12 +11,22 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
+gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'docker-api', require: 'docker'
+
+group :development do
+  gem 'spring'
+  gem 'rails-footnotes', '>= 3.7.9'
+end
 
 group :development, :test do
+  gem 'spring-commands-rspec'
   gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'teaspoon'
+  gem 'capybara'
+  gem 'capybara-webkit'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
