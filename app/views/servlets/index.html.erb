@@ -1,0 +1,16 @@
+<table id="servlets" class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @servlets.each do |servlet| %>
+    <tr data-id="<%= servlet.id %>">
+      <td><%= servlet.name %></td>
+      <td><%= servlet.image %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
