@@ -9,9 +9,10 @@ feature 'The image list page' do
     page.visit '/images'
     expect(page).to have_selector('table#images')
     stub_list.each do |s|
+      expect(page).to have_selector("table#images tr[@data-id='#{s.id}']")
       within("table#images tr[@data-id='#{s.id}'] td.actions") do
-        expect(page).to have_link('Delete')
-        expect(page).to have_link('Create', new_servlet_path(image: s.id))
+        expect(page).to have_link('Delete', href: image_path(s.id))
+        expect(page).to have_link('Create', href: new_servlet_path(image_id: s.id))
       end
     end
   end
