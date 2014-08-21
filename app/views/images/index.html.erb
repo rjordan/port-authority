@@ -18,7 +18,7 @@
       </td>
       <td><%= image.id %></td>
       <td class="actions">
-        <%= link_to '<span class="glyphicon glyphicon-cloud-upload"><span> Create'.html_safe, new_servlet_path(image_id: image.id), class: 'btn btn-success create' %>
+        <%= link_to '<span class="glyphicon glyphicon-cloud-upload"><span> Create'.html_safe, new_image_servlet_path(image.id), class: 'btn btn-success create' %>
         <%= link_to '<span class="glyphicon glyphicon-trash"><span> Delete'.html_safe, image_path(image.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger delete' %>
       </td>
     </tr>

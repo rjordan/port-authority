@@ -4,6 +4,7 @@ class ServletsController < ApplicationController
   end
 
   def new
+    @image = Image.find(params[:image_id])
     @servlet = Servlet.new
   end
 end

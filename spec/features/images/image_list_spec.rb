@@ -12,7 +12,7 @@ feature 'The image list page' do
       expect(page).to have_selector("table#images tr[@data-id='#{s.id}']")
       within("table#images tr[@data-id='#{s.id}'] td.actions") do
         expect(page).to have_link('Delete', href: image_path(s.id))
-        expect(page).to have_link('Create', href: new_servlet_path(image_id: s.id))
+        expect(page).to have_link('Create', href: new_image_servlet_path(s.id))
       end
     end
   end
