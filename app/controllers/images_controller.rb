@@ -1,11 +1,10 @@
 class ImagesController < ApplicationController
   def index
-    @images = Docker::Image.all
+    @images = Image.all
   end
 
   def destroy
-    image = Docker::Image.get(params['id'])
-    image.remove
+    Image.delete(params['id'])
     redirect_to :back, notice: 'Image deleted!'
   end
 end

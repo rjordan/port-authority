@@ -11,7 +11,7 @@
     <tr data-id="<%= image.id %>">
       <td>
         <ul>
-          <% image.info['RepoTags'].each do |tag| %>
+          <% image.tags.each do |tag| %>
             <li><%= tag %></li>
           <% end %>
         </ul>
