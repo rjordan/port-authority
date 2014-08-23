@@ -13,11 +13,11 @@ RSpec.describe ImagesController, :type => :controller do
 
   describe 'destroy' do
     before do
-      stub = double(id: 1)
-      expect(Docker::Image).to receive(:get).with('1').and_return(stub)
-      expect(stub).to receive(:remove)
+      image = FactoryGirl.build(:image)
+      expect(Docker::Image).to receive(:get).with(image.id).and_return(image)
+      expect(image).to receive(:remove)
       request.env["HTTP_REFERER"] = '/back'
-      delete :destroy, id: 1
+      delete :destroy, id: image.id
     end
     it { expect(response).to redirect_to('/back') }
   end

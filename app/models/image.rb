@@ -1,5 +1,5 @@
 class Image
-  attr_reader :id, :tags
+  attr_accessor :id, :tags
 
   def self.all
     Docker::Image.all.map { |i| create_from_docker(i) }
@@ -24,8 +24,8 @@ class Image
   def self.create_from_docker(image_data)
     return unless image_data
     image = Image.new
-    image.instance_variable_set('@id', image_data.id)
-    image.instance_variable_set('@tags', image_data.info['RepoTags'])
+    image.id = image_data.id
+    image.tags = image_data.info['RepoTags']
     image
   end
 

@@ -24,6 +24,8 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'guard-rspec'
   gem 'teaspoon'
   gem 'capybara'
