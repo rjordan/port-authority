@@ -6,7 +6,7 @@ RSpec.describe ImagesController, :type => :controller do
     before do
       get :index
     end
-    it { expect(response).to be_success }
+    it { expect(response.status).to eq(200) }
     it { expect(response).to render_template(:index) }
     it { expect(assigns(:images)).to_not be_nil }
   end
@@ -16,7 +16,7 @@ RSpec.describe ImagesController, :type => :controller do
       image = FactoryGirl.build(:image)
       expect(Docker::Image).to receive(:get).with(image.id).and_return(image)
       expect(image).to receive(:remove)
-      request.env["HTTP_REFERER"] = '/back'
+      request.env['HTTP_REFERER'] = '/back'
       delete :destroy, id: image.id
     end
     it { expect(response).to redirect_to('/back') }

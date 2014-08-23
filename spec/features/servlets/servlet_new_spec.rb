@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature 'The servlet creation page' do
   scenario 'displays a form' do
-    data = double(id: '1', info: {'RepoTags'=>['test:1']} )
-    expect(Docker::Image).to receive(:all).and_return([data])
+    image = FactoryGirl.build(:image)
+    allow(Image).to receive(:find).and_return image
     page.visit '/images/1/servlets/new'
     expect(page).to have_selector('form#new_servlet')
     within('form#new_servlet') do

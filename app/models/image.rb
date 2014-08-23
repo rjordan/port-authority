@@ -1,5 +1,5 @@
 class Image
-  attr_accessor :id, :tags
+  attr_accessor :id, :tags, :exposed_ports, :volumes
 
   def self.all
     Docker::Image.all.map { |i| create_from_docker(i) }
@@ -9,7 +9,7 @@ class Image
     id_string = id.to_s
     image = create_from_docker(Docker::Image.all.select{ |i| i.id == id_string }.first)
     return unless image
-    #image.update_from_details Docker::Image.get(id_string)
+    image.update_from_details Docker::Image.get(id_string)
     image
   end
 
@@ -19,7 +19,12 @@ class Image
     true
   end
 
-  private
+  def update_from_details(image_data)
+    self.exposed_ports = image_data.info['Config']['ExposedPorts']
+    self.volumes = image_data.info['Config']['Volumes']
+  end
+
+  protected
 
   def self.create_from_docker(image_data)
     return unless image_data
@@ -29,7 +34,6 @@ class Image
     image
   end
 
-  def update_from_details(image_data)
-  end
+
 
 end
