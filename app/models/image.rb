@@ -1,6 +1,12 @@
 class Image
   attr_accessor :id, :tags, :exposed_ports, :volumes
 
+  def initialize
+    self.tags = []
+    self.exposed_ports = []
+    self.volumes = []
+  end
+
   def self.all
     Docker::Image.all.map { |i| create_from_docker(i) }
   end
@@ -20,12 +26,11 @@ class Image
   end
 
   def update_from_details(image_data)
-    self.exposed_ports = image_data.info['Config']['ExposedPorts']
-    self.volumes = image_data.info['Config']['Volumes']
+    self.exposed_ports = image_data.info['Config']['ExposedPorts'].try(:keys) || []
+    self.volumes = image_data.info['Config']['Volumes'].try(:keys) || []
   end
 
   protected
-
   def self.create_from_docker(image_data)
     return unless image_data
     image = Image.new
@@ -33,7 +38,5 @@ class Image
     image.tags = image_data.info['RepoTags']
     image
   end
-
-
 
 end

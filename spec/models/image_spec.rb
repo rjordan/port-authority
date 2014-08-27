@@ -12,7 +12,7 @@ RSpec.describe Image, :type => :model do
     before do
       index_data = double(id: '1', info: {'RepoTags'=>['test:1']} )
       allow(Docker::Image).to receive(:all).and_return([index_data])
-      detail_data = double(id: '1', info: { 'Config' => { 'ExposedPorts'=>['80/tcp'], 'Volumes'=>['/data'] } })
+      detail_data = double(id: '1', info: { 'Config' => { 'ExposedPorts'=>{'80/tcp'=>{}}, 'Volumes'=>{'/data'=>{}} } })
       allow(Docker::Image).to receive(:get).with('1').and_return(detail_data)
       @image = Image.find(1)
     end
