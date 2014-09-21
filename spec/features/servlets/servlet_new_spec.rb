@@ -9,6 +9,7 @@ feature 'The servlet creation page' do
     within('form#new_servlet') do
       expect(page).to have_field('Name', type: 'text')
       expect(page).to have_field('Image', type: 'select')
+      expect(page).to have_selector('div#expose_ports')
     end
   end
 end

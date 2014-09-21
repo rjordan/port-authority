@@ -7,4 +7,8 @@ class ServletsController < ApplicationController
     @image = Image.find(params[:image_id])
     @servlet = Servlet.new
   end
+
+  def create
+    render text: params.inspect
+  end
 end

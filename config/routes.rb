@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :servlets, only: :index
+  resources :servlets, only: [:index,:create]
   resources :images, only: [:index, :destroy] do
     resources :servlets, only: :new
   end
