@@ -9,6 +9,12 @@ class ServletsController < ApplicationController
   end
 
   def create
-    render text: params.inspect
+    @servlet = Servlet.new(params_servlet)
+    render text: @servlet.inspect
+  end
+
+private
+  def params_servlet
+    params.require(:servlet).permit(:name, :image)
   end
 end

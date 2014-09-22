@@ -10,27 +10,26 @@
   <div class="panel panel-default panel-primary" id="expose_ports">
     <div class="panel-heading">Exposed Ports</div>
     <div class="panel-body">
-      <% @image.exposed_ports.each do |p| %>
-        <div class="row">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="servlet[expose-<%= p.gsub('/','-') %>]" data-enable="hostport"> Expose
-            </label>
+      <%= f.fields_for :ports do |pf| %>
+        <% @image.exposed_ports.each do |p| %>
+          <div class="row">
+            <%= pf.label p %>
+            <%= pf.text_field p %>
           </div>
-          <label for="servlet[portfor-<%= p.gsub('/','-') %>]" class="col-sm-offset-1"><%= p %></label>
-          <input type="number" name="servlet[portfor-<%= p.gsub('/','-') %>]" class="form-control" disabled="true" id="hostport">
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
   <div class="panel panel-default panel-primary" id="map_volumes">
     <div class="panel-heading">Map Volumes</div>
     <div class="panel-body">
-      <% @image.volumes.each do |v| %>
-        <div class="row">
-          <label class="col-sm-offset-1"><%= v %></label>
-          <input type="text" name="servlet[volumefor-<%= v.gsub('/','-') %>]" class="form-control" id="volume">
-        </div>
+      <%= f.fields_for :volumes do |vf| %>
+        <% @image.volumes.each do |v| %>
+          <div class="row">
+            <%= vf.label v %>
+            <%= vf.text_field v %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
