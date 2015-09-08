@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20140820022701) do
   create_table "servlets", force: true do |t|
     t.string   "name"
     t.string   "image"
+    t.string   "ports"
+    t.string   "volumes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

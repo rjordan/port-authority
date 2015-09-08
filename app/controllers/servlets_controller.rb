@@ -10,11 +10,18 @@ class ServletsController < ApplicationController
 
   def create
     @servlet = Servlet.new(params_servlet)
-    render text: @servlet.inspect
+    if @servlet.save
+        redirect_to servlets_path
+    else
+        render :new
+    end
   end
 
 private
   def params_servlet
-    params.require(:servlet).permit(:name, :image)
+    params.require(:servlet).permit(:name, :image).tap do |wl|
+        wl[:ports] = params[:servlet][:ports]
+        wl[:volumes] = params[:servlet][:volumes]
+    end
   end
 end

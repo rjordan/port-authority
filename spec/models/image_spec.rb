@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Image, :type => :model do
+  let(:image) { double(id: '1', info: { 'RepoTags'=>['test:1'],
+                                        'Config' => { 
+                                          'ExposedPorts'=>{'80/tcp'=>{}}, 
+                                          'Volumes'=>{'/data'=>{}} } }) }
+  before do
+    allow(Docker::Image).to receive(:get).with('1').and_return(image)
+    allow(Docker::Image).to receive(:all).and_return([image])
+  end
+
   describe '#all' do
     before do
       @response = Image.all
@@ -10,11 +19,7 @@ RSpec.describe Image, :type => :model do
 
   describe '#find' do
     before do
-      index_data = double(id: '1', info: {'RepoTags'=>['test:1']} )
-      allow(Docker::Image).to receive(:all).and_return([index_data])
-      detail_data = double(id: '1', info: { 'Config' => { 'ExposedPorts'=>{'80/tcp'=>{}}, 'Volumes'=>{'/data'=>{}} } })
-      allow(Docker::Image).to receive(:get).with('1').and_return(detail_data)
-      @image = Image.find(1)
+      @image = described_class.find(1)
     end
     it { expect(@image).to be_kind_of(Image) }
     it { expect(@image.id).to eq('1') }
@@ -25,10 +30,8 @@ RSpec.describe Image, :type => :model do
 
   describe '#delete' do
     before do
-      data = double(id: '1')
-      expect(data).to receive(:remove)
-      allow(Docker::Image).to receive(:get).with('1').and_return(data)
-      @result = Image.delete('1')
+      expect(image).to receive(:remove)
+      @result = described_class.delete('1')
     end
     it { expect(@result).to be_truthy }
   end
